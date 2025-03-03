@@ -30,5 +30,5 @@ fs.writeFile(`${path}\\${fileName}.${fileExtension}`, fileContent, (err) => {
     });
 
 server.listen(port, domainName, () => {
-    console.log(`Le serveur tourne sur le port ${8000} !`);
+    console.log(`Le serveur tourne sur le port ${port} !`);
 })
