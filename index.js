@@ -1,6 +1,8 @@
 import chalk from 'chalk';
 import http from 'http';
 import fs from 'fs';
+import axios from 'axios';
+
 
 let students = ['daphnée','lucie','maxime','toni']
 let chalkColor = ['green','blue','red']
@@ -28,6 +30,26 @@ fs.writeFile(`${path}\\${fileName}.${fileExtension}`, fileContent, (err) => {
         console.log("Le fichier a été créer avec succès, le fichier contient : " + fs.readFileSync(`${path}\\${fileName}.${fileExtension}`, "utf8"));
     }
     });
+
+const fetchGoogle = async () => {
+    try{
+        const response = await axios.get('https://www.google.com');
+        const resData = response.data;
+
+        fs.writeFile('copie-google.html', resData, (err) => {
+        if (err) {
+            console.log(err);
+        }else{
+            console.log('Fichier généré de Google');
+        }
+        });
+
+    }catch(err){
+        console.log(err);
+    }
+};
+
+fetchGoogle();
 
 server.listen(port, domainName, () => {
     console.log(`Le serveur tourne sur le port ${port} !`);
